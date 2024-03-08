@@ -26,10 +26,10 @@
 #>
 
 function Get-Proxy (){
-    Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' | Select-Object ProxyServer, ProxyEnable        
+    Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' | Select-Object ProxyServer, ProxyEnable, AutoConfigURL        
 }
 
-function Set-Proxy { 
+function Set-AutoConfigProxy { 
     [CmdletBinding()]
     [Alias('proxy')]
     [OutputType([string])]
@@ -42,8 +42,10 @@ function Set-Proxy {
         $autoconfigurl
  
     )
+
+    $uri = [System.Uri]$autoconfigurl
     #Test if the TCP Port on the server is open before applying the settings
-    If ((Test-NetConnection -ComputerName [System.Uri]$autoconfigurl.Host -Port [string][System.Uri]$autoconfigurl.Port).TcpTestSucceeded) {
+    If ((Test-NetConnection -ComputerName $uri.Host -Port $uri.Port).TcpTestSucceeded) {
         Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name AutoConfigURL -Value $autoconfigurl
         Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyEnable -Value 1
         Get-Proxy #Show the configuration 
