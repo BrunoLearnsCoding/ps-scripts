@@ -1,14 +1,10 @@
-# Proxy functions
----
+# proxy.ps1
 
-# Get-Proxy 
+Three functions are defined to modify proxy settings for current user.
 
-Shows proxy settings
+## Get help 
 
-# Set-Proxy AutoConfigURL
+Comment based help is provided for the the script. Get help for all functions in the script using the following command. Note taht the **full path** of the script should be provided as parameter. 
 
-AutoConfigURL is the parameter of the pac file on the proxy server. It also contains the port. 
+Get-Help -Name .\proxy.ps1 
 
-Example  :
-
-http://172.16.8.185:8080/proxy.pac

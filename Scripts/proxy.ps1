@@ -8,22 +8,25 @@
 .EXAMPLE
     Get the proxy settings for the current user
 
-    PS D:\> get-proxy
-    ProxyServer ProxyEnable
-    ----------- -----------
-                        0
+    PS D:\> Get-Proxy
+    ProxyServer ProxyEnable AutoConfigURL
+    ----------- ----------- -------------
+                        0   
 
 .EXAMPLE
-   Set the proxy server for the current user. Test the address and if the TCP Port is open before applying the settings.
-   proxy squid.server.com 3128    # or   set-proxy -server "yourproxy.server.com" -port 3128
+   Set the auto config proxy server for the current user. Test the address and if the TCP Port is open before applying the settings.
+   Set-AutoConfigProxy "yourproxy.server.com:5620/proxy.pac"
   
 .EXAMPLE
    Remove the current proxy settings for the user.
+   Remove-Proxy
 
 .NOTES
    Author Paolo Frigo, https://www.scriptinglibrary.com
    Modifed by Bruno, https://www.ilearncoding.com
 #>
+
+
 
 function Get-Proxy (){
     Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' | Select-Object ProxyServer, ProxyEnable, AutoConfigURL        
@@ -59,5 +62,13 @@ function Remove-Proxy (){
     Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyServer -Value ""
     Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyEnable -Value 0
     Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name AutoConfigURL -Value ""
+    
+    <#
+    .SYNOPSIS 
+        Remove the proxy setting for current user
+    .DESCRIPTION
+        Remove the proxy setting for current user by changing registry keys.
 
+    
+    #>
 }
