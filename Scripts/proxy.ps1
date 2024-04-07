@@ -54,7 +54,8 @@ function Set-AutoConfigProxy {
         Get-Proxy #Show the configuration 
     }
     Else {
-        Write-Error -Message "The proxy address is not valid:  $($server):$($port)"
+        # $global:LASTEXITCODE = 1
+        Write-Error -Message "The proxy address is not valid:  $($server):$($port)" -ErrorAction Stop
     }    
 }
 

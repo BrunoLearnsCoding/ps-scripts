@@ -1,0 +1,29 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+# NTFS Security in PowerShell
+
+[NTFS Security Module Help on Github](https://ntfssecurity.readthedocs.io/en/latest/)
+
+To change NTFS permissions in PowerShell you should first install NTFSSecurity module :
+
+#!pwsh
+
+Install-Module -Name NTFSSecurity
+
+#!pwsh
+
+# To change ownership of an object we use :
+
+Set-NTFSOwner -Path "E:\Projects\social-actions" -Recursive -Hidden -Account "AzureAD\Bruno" 
+
+# This command sets the ownership of all objects in "E:\Projects\social-actions" to AzureAD\Bruno
+
+#!pwsh
+
+# To get ownership of an object :
+
+Get-NTFSOwner -Path "E:\Projects\social-actions"
