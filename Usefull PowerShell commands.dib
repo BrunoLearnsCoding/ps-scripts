@@ -1,0 +1,13 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+# Usefull powershell commands
+
+#!markdown
+
+(Get-Command wt.exe).Source
+
+Shows installation path of a program, here wt.exe
