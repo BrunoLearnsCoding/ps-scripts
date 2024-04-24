@@ -1,0 +1,11 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+    New-Item 'folder name' -Type Directory
+
+    Remove-Item "item's name'
+
+    Move-Item *.txt, *.csv -Destination .\TextFiles
