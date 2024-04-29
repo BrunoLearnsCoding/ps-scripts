@@ -4,8 +4,15 @@
 
 #!markdown
 
+## Creating a file or directory
+
     New-Item 'folder name' -Type Directory
+    New-Item 'file-name.ext' -Type File
+
+## Deleting an item
 
     Remove-Item "item's name'
+
+## Moving items
 
     Move-Item *.txt, *.csv -Destination .\TextFiles
