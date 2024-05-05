@@ -1,0 +1,22 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+# Extending PowerShell using Modules 
+
+#!markdown
+
+    Get-Module                          // Shows imported moduels in current session
+
+    Get-Modules -ListAvailible          // Shows all modules installed on the local computer which can 
+                                        be imported
+    Import-Module   -Name [mod_name]    // Imports a currently installed module to the current session
+
+    Get-Repository                      // Show rempote repositories. The deault is PowerShell       
+                                        Gallary
+    Find-Module  *smtp*                 // Finds modules on remote 
+                                            repositories
+    Install-Module -Name [name]         // Installs a module from a remote repository on 
+                                            local computer                                

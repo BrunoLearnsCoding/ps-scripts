@@ -1,6 +1,2 @@
-Application 
-Software
-Library
-Poland
-Geocity
-Ping
+Applications
+Geology

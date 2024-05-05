@@ -1,0 +1,106 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+# PSProviders & PSDrives
+
+PoweShell provider, or '*PSProvider*', is an adapter. It is designed to take a kind of data store and make it look like a disk drive. You can see a list of installed PSProviders in PowerShell using 
+
+    Get-PSProvider
+
+Each provider has a set of distinctive capabilities like *ShouldProcess*, *Filter*, *Credentials* and so on.
+
+#!markdown
+
+The most important providers are FileSystem, Registry and Environment.
+Each provider has one or more *PSDrive*s. For example, if you have two local disk drives on your computer, the FileSystem PSProvider has two PSDrives naming C, D.
+
+You can see PowerShell drives of each PowerShell provider in 'Get-PSProvider' command's result.
+It is also possible to get a list of PSDrives of all providers using :
+
+    Get-PSDrive 
+
+#!markdown
+
+To reach a DSDrive you can use the following command:
+
+    Set-Location -Path '[PSDrive-name]':
+
+The colon is mandatory.
+
+#!markdown
+
+The data in every PSDrive is organised as items and item properties. 
+
+To manipulate the data in a PSDrive you should use the following comdlets :
+
+
+    Clear-Item 
+    Copy-Item  
+    Get-Item   
+    Invoke-Item
+    Move-Item  
+    New-Item   
+    Remove-Item
+    Rename-Item
+    Set-Item  
+    Clear-ItemProperty  
+    Copy-ItemProperty   
+    Get-ItemProperty    
+    Move-ItemProperty   
+    New-ItemProperty    
+    Remove-ItemProperty 
+    Rename-ItemProperty 
+    Set-ItemProperty    
+
+#!markdown
+
+## Navigating in PSdrives
+
+You can navigate in every PSDrive exactly like how you navigate in FileSystem using Set-Location or cd alias.
+
+    Set-Location -Path hkcu:
+    cd Software
+    cd ..
+
+No matter in what PSDrive you are, here in Registry, you can use cd, dir, ls, cd .. to navigate in the drive.
+
+#!markdown
+
+## FileSystem PSDrive
+
+Files and folders are both 'items'. However, when you want to create a folder or a file you should specify which type you want to create.
+
+    New-Item -Path .\Projects -ItemType Directory
+
+To list all items you should use :
+
+    Get-ChildItem 
+
+In FileSystemPSDrive, ItemProperty is attribute of an item, like Read-Only, Creation Time and Length.
+
+#!markdown
+
+## Registry PSDrive
+
+Note: Registry keys are item properties which are organized in a hierarchy of containers. You shoud create registry keys using 
+
+    New-ItemProperty -Path . -Name EnableFeature -Value 1 -Type 'DWORD'
+
+#!markdown
+
+## Filtering date in PSDrives
+
+If a PSDrive supports 'Filter' capability, you can use -Filetr switch to filter the result.
+
+FileSystem supports 'Filter', however Registry and Environment doesn't.
+
+    Get-ChildItem -Path . -Filter *.txt
+
+You can use -Include and -Exclude to filter the data. However these switches work when you query a directory or when you use -Recurse switch.
+
+    Get-ChildItem -Path . -Include *.txt -Recurse
+
+Note that -Recurse causes the command to filter all items in the sub directories of the -Path in addition to the items inside the -Path.
