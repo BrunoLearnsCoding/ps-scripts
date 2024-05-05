@@ -1,0 +1,28 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"pwsh","items":[{"aliases":[],"languageName":"pwsh","name":"pwsh"}]}}
+
+#!csharp
+
+Get-WindowsFeature dhcp
+
+Get-DhcpServerv4Scope
+
+// Adds a scope to dhcp server
+Add-DhcpServerv4Scope -Name 'clients' -StartRange 172.16.10.100 `
+	-EndRange 172.16.10.130 -SubnetMask 255.255.255.0 -LeaseDuration (new-timespan -Days 30)
+
+// lists all scopes indhcp
+Get-DhcpServerv4Scope
+
+Add-DhcpServerInDC 			// Authorizes DHCP in DC
+
+Get-DhcpServerInDC			// Checks if dhcp is Authorized in dc
+
+
+Get-DhcpServerv4Lease -ScopeId 172.16.10.0	// Checks if there is any Scope with specified id in dhcp
+
+restart-service dhcp 
+
+// Adds a specific IPAddress to the reservation
+Add-DhcpServerv4Reservation -ScopeId 172.16.10.0 -IPAddress 172.16.10.100 -ClientId 00-0c-29-88-e5-69
