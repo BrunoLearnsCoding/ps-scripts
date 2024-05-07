@@ -19,4 +19,6 @@
     Find-Module  *smtp*                 // Finds modules on remote 
                                             repositories
     Install-Module -Name [name]         // Installs a module from a remote repository on 
-                                            local computer                                
+                                            local computer  
+
+    Update-Module   [name]              // To ensure that the local copy of the module is the latest one.                              
