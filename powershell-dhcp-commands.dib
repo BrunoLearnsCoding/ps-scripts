@@ -6,6 +6,8 @@
 
 Get-WindowsFeature dhcp
 
+Install-WindowsFeatre -Name DHCP
+
 Get-DhcpServerv4Scope
 
 // Adds a scope to dhcp server
