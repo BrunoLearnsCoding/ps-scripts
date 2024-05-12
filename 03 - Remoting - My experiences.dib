@@ -1,0 +1,31 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"pwsh","items":[{"aliases":[],"languageName":"pwsh","name":"pwsh"}]}}
+
+#!markdown
+
+# PowerShell Remoting my experiences
+
+1- WinRM is not suitable yet to configure Windows servers from scratch because it is built to be used mainly in domain environments.
+
+2- SSH is a mature technology which could be used from the beginning to configure Windows Servers. It could be easily installed and configured.
+
+    Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+
+Find the installation path using :
+    
+    (Get-Command sshd.exe).Source
+
+The config file is in the installation folder. configure the service and restart the server. Add firewall rules to enable using SSH on the network. Set the service to be started authomatically.
+
+    Set-Service sshd -StartType Automatic
+
+[Complete guide to configure OpenSSH](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell)
+
+**THIS IS A BETTER WAY**
+
+You can ALSO configure OpenSSH faster using a PowerShell 7 module 'Microsoft.PowerShell.RemotingTools'.
+
+    Install-Module -Name Microsoft.PowerShell.RemotingTools
+
+    Enable-SSHRemoting -SSHDConfigFilePath 'path\to\config\file'

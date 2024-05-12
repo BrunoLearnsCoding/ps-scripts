@@ -1,0 +1,42 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"pwsh","items":[{"aliases":[],"languageName":"pwsh","name":"pwsh"}]}}
+
+#!markdown
+
+# PowerShell Installation
+
+[Source wenpage on Microsoft learn](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#winget)
+
+#!markdown
+
+## Install PowerShell on Windows Clients
+
+#!markdown
+
+### Install PowerShell using msi
+
+Download and double click :))))))))))
+
+### Install PowerShell using winget
+
+    winget install --id Microsoft.Powershell --source winget
+ 
+
+#!markdown
+
+## Install PowerShell on Windows Server
+
+#!pwsh
+
+# Downloads the installation script
+# Note that you can't use Invoke-WebRequest on a WIN SERVER CORE
+# because there are no msedge installed so you have to use .NET WebClient object  
+
+(New-Object System.Net.WebClient).DownloadString('https://aka.ms/install-powershell.ps1') | Out-File install-poweshell.ps1
+
+# Installs the latest version of powershell
+.\install-powershell.ps1 -Destination 'C:\Program Files\PowerShell\7'
+
+# pwsh.exe 
+Install-Module Microsoft.PowerShell.Remoting
