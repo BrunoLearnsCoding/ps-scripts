@@ -1,0 +1,55 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+Certainly! Let's review your text and make any necessary grammatical corrections:
+
+---
+
+# PowerShell Pipeline: An Interesting Case
+
+The goal is to delve deeper into how PowerShell pipelines work.
+
+**The Scenario**: We have a list of modules in a CSV file named `modules.csv`. The file contains a single column named "Name." Our objective is to obtain a command list for all the modules listed in `modules.csv`.
+
+## First Attempt
+
+I am aware that `Get-Command` has a property called 'Module,' which can help retrieve all commands within a module. So, I attempted the following command:
+
+```powershell
+Import-Csv .\modules.csv | Select-Object -Property @{name='Module';expression={$_.Name}} | Get-Command
+```
+
+However, as expected, this command did not work. Instead, it resulted in a series of error lines like the following:
+
+```
+Get-Command: The term '@{Module=MSAL.PS}' is not recognized as the name of a cmdlet, function, script file, or executable program.
+```
+
+It appears that PowerShell couldn't map the `Module` property of the `PSCustomObject` (created by `Import-Csv` and `Select-Object` in the pipeline) to the `Module` property of `Get-Command`. But why? Perhaps because the `Module` property does not accept values from the pipeline.
+
+## Let's Consult the Help System
+
+Running `Help Get-Command -Full` provides information about the `Module` property:
+
+- `-Module <System.String[]>`: Specifies an array of modules. This cmdlet retrieves commands from the specified modules. You can enter the names of modules or module objects. The parameter accepts string values, but it can also accept a `PSModuleInfo` object (such as those returned by the `Get-Module` and `Import-PSSession` cmdlets). It accepts pipeline input by property name.
+
+Clearly, the `Module` property can accept input from the pipeline via property name. So what's the issue? Why can't PowerShell map properties correctly?
+
+## Second Attempt
+
+Let's closely examine the error we encountered. It seems that PowerShell attempted to send the `PSCustomObject` to the `Name` property. But why?
+
+Checking the `Name` property in the help system again:
+
+- `-Name <System.String[]>`: Specifies an array of names. This cmdlet retrieves only commands with the specified name. You can enter a name or a name pattern (wildcard characters are permitted). To retrieve commands with the same name, use the `All` parameter. When two commands share the same name, by default, `Get-Command` retrieves the command that runs when you type the command name. The parameter accepts pipeline input both by property name and by value.
+
+As it turns out, PowerShell uses both parameter binding mechanisms for the `Name` property. Typically, the `ByValue` mechanism is triggered first, causing every string[] to be mapped to the `Name` property, not the `Module`.
+
+Unfortunately, this trial was a pure failure.
+
+---
+
+Feel free to make any additional adjustments or ask for further clarification if needed! 😊🚀
