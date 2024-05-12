@@ -5,3 +5,7 @@
 #!markdown
 
 # Installing ADDS using PowerShell
+
+    Install-windowsFeature -Name  AD-Domain-Services
+    
+    Install-ADDSForest -DomainName "epdm.ir" -InstallDNS
