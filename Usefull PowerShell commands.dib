@@ -11,3 +11,12 @@
 (Get-Command wt.exe).Source
 
 Shows installation path of a program, here wt.exe
+
+#!markdown
+
+## Open items (files) in other applications via PowerShell
+
+
+### Open a file in the default application
+
+Invoke-Item -Path .\lognames.csv'

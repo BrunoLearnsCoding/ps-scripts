@@ -1,0 +1,13 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!pwsh
+
+ # Gets all processes from df01 and export it to an xml file
+
+ Invoke-Command -ComputerName df01 -Command {Get-Process} | Export-Clixml df01-process.xml
+
+# This line of code compares processes fron df01 to live process of the current machine.
+
+Compare-Object -ReferenceObject (import-clixml -Path .\df01-process.xml) -DifferenceObject (Get-Process) -Property Name, cpu
