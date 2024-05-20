@@ -1,12 +1,13 @@
 {
 	"folders": [
 		{
-			"path": ".."
+			"path": "."
 		}
 	],
 	"settings": {
 		"powershell.codeFormatting.autoCorrectAliases": true,
-		"powershell.integratedConsole.showOnStartup": true
+		"powershell.integratedConsole.showOnStartup": true,
+		"terminal.integrated.defaultProfile.windows": "Windows PowerShell"
 	},
 	"extensions": {
 		"recommendations": [
