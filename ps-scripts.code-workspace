@@ -5,7 +5,8 @@
 		}
 	],
 	"settings": {
-		"powershell.codeFormatting.autoCorrectAliases": true
+		"powershell.codeFormatting.autoCorrectAliases": true,
+		"powershell.integratedConsole.showOnStartup": true
 	},
 	"extensions": {
 		"recommendations": [
