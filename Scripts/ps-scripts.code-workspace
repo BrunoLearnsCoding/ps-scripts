@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"powershell.codeFormatting.autoCorrectAliases": true
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.powershell",
+		]}
+}
