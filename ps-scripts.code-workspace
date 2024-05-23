@@ -7,7 +7,8 @@
 	"settings": {
 		"powershell.codeFormatting.autoCorrectAliases": true,
 		"powershell.integratedConsole.showOnStartup": true,
-		"terminal.integrated.defaultProfile.windows": "Windows PowerShell"
+		"terminal.integrated.defaultProfile.windows": "Windows PowerShell",
+		"powershell.powerShellDefaultVersion": "Windows PowerShell (x64)"
 	},
 	"extensions": {
 		"recommendations": [
