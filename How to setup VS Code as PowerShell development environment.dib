@@ -1,0 +1,20 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+# How to setup VS Code as PowerShell development environment
+
+#!markdown
+
+1 - Install PowerShell extension
+
+`code --install-extension ms-vscode.powershell`
+
+2 - Configure PowerShell Extension to open Windows PowerShell as Extension Terminal
+
+- Go to WorkSpace settings [ctrl+, -> Workspace Tab]
+- Find "PowerShell Default Version" item
+- Click on 'Session Menu Command' link in the text.
+- VSCode command pallete opens up and shows a list of PowerShell versions and architectures. Choose the right version of Windows PowerShell 
