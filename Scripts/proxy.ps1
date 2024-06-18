@@ -23,13 +23,13 @@
 
 .NOTES
    Author Paolo Frigo, https://www.scriptinglibrary.com
-   Modifed by Bruno, https://www.ilearncoding.com
+   Modifed by Bruno [Behrang Taj Ahmadi], https://www.ilearncoding.com
 #>
 
 
 
 function Get-Proxy (){
-    Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' | Select-Object ProxyServer, ProxyEnable, AutoConfigURL        
+    Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' | Select-Object ProxyServer, ProxyEnable, AutoConfigURL
 }
 
 function Set-AutoConfigProxy { 
@@ -50,7 +50,7 @@ function Set-AutoConfigProxy {
     #Test if the TCP Port on the server is open before applying the settings
     If ((Test-NetConnection -ComputerName $uri.Host -Port $uri.Port).TcpTestSucceeded) {
         Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name AutoConfigURL -Value $autoconfigurl
-        Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyEnable -Value 1
+        Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyEnable -Value 0
         Get-Proxy #Show the configuration 
     }
     Else {
