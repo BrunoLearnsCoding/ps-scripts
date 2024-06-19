@@ -1,4 +1,4 @@
-Import-Module D:\Projects\ps-scripts\Scripts\Bruno.ClassLibrary.psm1
+Import-Module E:\Projects\ps-scripts\Scripts\Bruno.ClassLibrary.psm1
 import-module Pester
 
 Describe 'Get-Instance' {
