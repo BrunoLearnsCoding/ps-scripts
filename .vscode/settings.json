@@ -1,5 +1,6 @@
 {
     "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
     "powershell.powerShellDefaultVersion": "Windows PowerShell (x64)",
-    "terminal.integrated.shellIntegration.enabled": true
+    "terminal.integrated.shellIntegration.enabled": true,
+    "terminal.integrated.suggest.enabled": true
 }
