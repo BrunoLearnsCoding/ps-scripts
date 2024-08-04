@@ -1,4 +1,4 @@
-function Check-ProgramInstalled {
+function Test-ProgramInstalled {
     param (
         [string]$programName
     )
@@ -14,7 +14,7 @@ function Check-ProgramInstalled {
 # Example usage:
 
 function Install-Winget {
-    $wingitInstalled = Check-ProgramInstalled "winget"
+    $wingitInstalled = Test-ProgramInstalled "winget"
     if ($wingitInstalled -eq $true) {
         Write-Host "Winget is installed."
         return
