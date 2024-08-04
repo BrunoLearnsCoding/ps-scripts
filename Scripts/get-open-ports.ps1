@@ -30,4 +30,4 @@ function Get-OpenPorts {
     }
 }
 
-Get-OpenPorts -ComputerName 8.8.8.8 -StartPort 447 -EndPort 400
+## Get-OpenPorts -ComputerName 8.8.8.8 -StartPort 447 -EndPort 400
